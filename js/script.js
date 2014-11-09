@@ -16,13 +16,18 @@ var o4l_scores = (function($) {
         },
 
         set_active = function(s) {
+            var success = false;
+
             $scoreContainer.removeClass('o4l-no-active');
             $scores.each(function() {
                 $(this).parent().removeClass('o4l-active-score');
                 if ($(this).attr('href') === s) {
                     $(this).parent().addClass('o4l-active-score');
+                    success = true;
                 }
             });
+
+            return success;
         },
 
         scroll_to = function(s) {
@@ -46,6 +51,7 @@ var o4l_scores = (function($) {
             $scores = $scoreContainer.find('a');
             $header = $('#o4l-header');
             $postHeader = $('#o4l-post-header');
+            $sections = $('.o4l-post-section');
 
             for (var i = 0; i < $scores.length; i++) {
                 $($scores[i]).bind('click', function(e) {
@@ -66,6 +72,24 @@ var o4l_scores = (function($) {
                     disable_active_scores();
                 }
             }, {offset: -$header.outerHeight()});
+
+            $sections.waypoint(function(direction) {
+                if (direction === 'down') {
+                    if (!set_active('#'+$(this).attr('id'))) {
+                        disable_active_scores();
+                    }
+                }
+            }, {offset: $postHeader.outerHeight()});
+
+            $sections.waypoint(function(direction) {
+                if (direction === 'up') {
+                    if ($(this).prev('.o4l-post-section').length > 0) {
+                        if (!set_active('#'+$($(this).prev('.o4l-post-section')[0]).attr('id'))) {
+                            disable_active_scores();
+                        }
+                    }
+                }
+            }, {offset: $postHeader.outerHeight() + 100});
         };
 
     return {
