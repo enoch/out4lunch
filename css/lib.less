@@ -1,0 +1,20 @@
+// Enoch Hsiao
+
+//LESS Mixins for browser compatibility and other functions
+
+.box-sizing(@val: border-box) {
+	-moz-box-sizing: @val;
+	-webkit-box-sizing: @val;
+	box-sizing: @val;
+}
+
+.box-shadow(@val) {
+	-moz-box-shadow: @val;
+	-webkit-box-shadow: @val;
+	box-shadow: @val;
+}
+
+.transition(@val) {
+    transition: @val;
+    -webkit-transition: @val;
+}

@@ -1,0 +1,457 @@
+/* Author: Enoch Hsiao */
+
+@import "lib";
+
+// CSS Clearing
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,font,img,kbd,q,s,samp,small,strike,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline} :focus {outline:0}
+body {line-height:1}
+ol, ul {list-style:none}
+table {border-collapse:separate;border-spacing:0}
+caption, th, td {text-align:left;font-weight:normal}
+a {text-decoration: none; color: #000;}
+blockquote:before, blockquote:after, q:before, q:after {content: ""}
+blockquote, q {quotes:"" ""}
+*, *:before, *:after { .box-sizing(); }
+
+// Clearfix
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+// Subscript and Superscript Classes
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+ 
+sup {
+  top: -0.5em;
+}
+ 
+sub {
+  bottom: -0.25em;
+}
+
+// General Styles
+
+html {
+	position: relative;
+	height: 100%;
+	z-index: 1;
+	font-family: lato, arial, sans-serif;
+	font-size: 62.5%;
+	font-weight: normal;
+}
+
+body {
+	position: relative;
+	height: 100%;
+}
+
+// Site Header Title
+
+h1 {
+	font-size: 4.0em;
+}
+
+// Site Header Subtitle
+
+h2 {
+	font-size: 2.5em;
+}
+
+// Section Titles
+
+h3 {
+	font-size: 3.6em;
+}
+
+// Subtitles
+
+h4 {
+	font-size: 2.2em;
+}
+
+// General Text
+li, p {
+	font-size: 1.6em;
+}
+
+// Layout Styles
+
+.o4l-container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+// Header Styles
+
+@image-size: 400px;
+
+#o4l-header {
+	display: block;
+	position: relative;
+	height: 100px;
+	padding-top: 20px;
+
+	&.o4l-float-scores {
+		margin-bottom: @image-size + 20px + 65px;
+	}
+
+	.o4l-container {
+		#o4l-site-title {
+			font-size: 5.0em;
+		}
+	}
+}
+
+#o4l-post-header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	&.o4l-float-scores {
+		position: fixed;
+		width: 1200px;
+		top: 0;
+		background-color: #fff;
+	}
+
+	h2 {
+		font-size: 5.5em;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+}
+
+#o4l-post-image-container {
+	display: block;
+	position: relative;
+	float: left;
+
+	ul {
+		display: block;
+		position: relative;
+		width: @image-size;
+		height: @image-size;
+
+		li {
+			display: inline-block;
+			position: absolute;
+			float: left;
+			width: @image-size;
+			height: @image-size;
+			border-radius: @image-size/2;
+			overflow: hidden;
+
+			img {
+				height: 100%;
+				width: auto;
+			}
+		}
+	}
+}
+
+@circle-size: 35px;
+
+#o4l-post-score-container {
+	position: relative;
+	margin-left: 40px;
+	float: left;
+
+	&.o4l-no-active {
+		top: 60px;
+	}
+
+	.o4l-score {
+		@active-color: #ffb380;
+
+		position: relative;
+		margin-bottom: 10px;
+
+		.o4l-score-circle {
+			display: inline-block;
+			position: relative;
+			height: @circle-size;
+			width: @circle-size;
+			margin-right: 5px;
+			border-radius: @circle-size/2;
+			background-color: fade(lighten(@active-color, 10%), 80%);
+			.transition(~'height 0.3s, width 0.3s');
+
+			&::after {
+				display: block;
+				position: absolute;
+				content: "";
+				top: 0;
+				left: 0;
+				height: @circle-size;
+				width: @circle-size/2;
+				border-bottom-left-radius: @circle-size/2;
+				border-top-left-radius: @circle-size/2;
+				background-color: transparent;
+				.transition(~'height 0.3s, width 0.3s');
+			}
+		}
+
+		&.o4l-score-0 {
+
+		}
+
+		&.o4l-score-1 {
+			.o4l-score-circle-1::after {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-2 {
+			.o4l-score-circle-1 {
+				background-color: @active-color;
+			}
+
+			.o4l-score-circle-2::after {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-3 {
+			.o4l-score-circle-1 {
+				background-color: @active-color;
+			}
+
+			.o4l-score-circle-2::after {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-4 {
+			.o4l-score-circle-1, .o4l-score-circle-2 {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-5 {
+			.o4l-score-circle-1, .o4l-score-circle-2 {
+				background-color: @active-color;
+			}
+
+			.o4l-score-circle-3::after {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-6 {
+			.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3 {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-7 {
+			.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3 {
+				background-color: @active-color;
+			}
+
+			.o4l-score-circle-4::after {
+				background-color: @active-color;
+			}
+		}
+
+		&.o4l-score-8 {
+			.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3, .o4l-score-circle-4 {
+				background-color: @active-color;
+			}
+		}
+
+		h4 {
+			display: inline-block;
+			margin-left: 10px;
+			line-height: @circle-size;
+			vertical-align: top;
+			color: #666;
+			font-size: @circle-size;
+			font-weight: 900;
+			text-transform: uppercase;
+		}
+
+		&.o4l-active-score {
+			@active-circle-size: 80px;
+			@active-color: #ec7528;
+
+			padding-top: @active-circle-size;
+
+			.o4l-score-circle {
+				height: @active-circle-size;
+				width: @active-circle-size;
+				border-radius: @active-circle-size/2;
+				margin-right: 15px;
+				background-color: fade(lighten(@active-color, 10%), 80%);
+
+				&::after {
+					height: @active-circle-size;
+					width: @active-circle-size/2;
+					border-bottom-left-radius: @active-circle-size/2;
+					border-top-left-radius: @active-circle-size/2;
+				}
+			}
+
+			h4 {
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin-left: 0;
+				color: #000;
+				line-height: @active-circle-size;
+				font-size: @active-circle-size;
+			}
+
+			&.o4l-score-0 {
+
+			}
+
+			&.o4l-score-1 {
+				.o4l-score-circle-1::after {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-2 {
+				.o4l-score-circle-1 {
+					background-color: @active-color;
+				}
+
+				.o4l-score-circle-2::after {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-3 {
+				.o4l-score-circle-1 {
+					background-color: @active-color;
+				}
+
+				.o4l-score-circle-2::after {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-4 {
+				.o4l-score-circle-1, .o4l-score-circle-2 {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-5 {
+				.o4l-score-circle-1, .o4l-score-circle-2 {
+					background-color: @active-color;
+				}
+
+				.o4l-score-circle-3::after {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-6 {
+				.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3 {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-7 {
+				.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3 {
+					background-color: @active-color;
+				}
+
+				.o4l-score-circle-4::after {
+					background-color: @active-color;
+				}
+			}
+
+			&.o4l-score-8 {
+				.o4l-score-circle-1, .o4l-score-circle-2, .o4l-score-circle-3, .o4l-score-circle-4 {
+					background-color: @active-color;
+				}
+			}
+		}
+	}
+}
+
+#o4l-post-info-container {
+	position: relative;
+	width: 300px;
+	margin-left: 20px;
+	top: 60px;
+	float: left;
+
+	h3 {
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+}
+
+#o4l-title-container {
+	display: inline-block;
+	float: left;
+}
+
+#o4l-nav {
+	display: inline-block;
+	position: relative;
+	margin-left: 100px;
+	padding-top: 20px;
+
+	ul {
+		display: block;
+
+		> li {
+			display: inline-block;
+			margin-right: 20px;
+
+			a {
+
+			}
+		}
+	}
+}
+
+#o4l-post-container {
+	margin: 50px auto 0;
+	max-width: 960px;
+	padding: 15px;
+	border: 1px solid #000;
+
+	.deal-on-the-meal {
+		font-size: 1.8em;
+	}
+
+	.o4l-post-section {
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+		h4 {
+			margin-bottom: 10px;
+			text-decoration: underline;
+		}
+
+		p {
+			font-size: 1.8em;
+			text-indent: 2em;
+			line-height: 200%;
+		}
+	}
+
+	.o4l-author {
+		font-size: 1.8em;
+	}
+}
+
+#o4l-footer {
+	margin-top: 200px;
+}
