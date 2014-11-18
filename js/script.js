@@ -7,6 +7,7 @@ var o4l_scores = (function($) {
         $scoreContainer,
         $scores,
         $postHeader,
+        $sections,
 
         disable_active_scores = function() {
             $scoreContainer.addClass('o4l-no-active');
@@ -38,9 +39,13 @@ var o4l_scores = (function($) {
                 target = $(s).offset().top - $postHeader.outerHeight();
             }
 
+            $sections.waypoint('disable');
+
             $('html,body').animate({
                 scrollTop: target
-            }, 500);
+            }, 500, function(s) {
+                $sections.waypoint('enable');
+            });
 
             set_active(s);
             // $(window).scrollTop($(s).offset().top - $header.outerHeight());
