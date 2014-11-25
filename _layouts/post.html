@@ -1,9 +1,9 @@
 {% include header.html %}
 
-<div id="o4l-post-header" class="clearfix">
-	<h2>{{page.restaurant-name}}</h2>
+<div id="o4l-post-header" class="o4l-container clearfix">
+	<!-- <h2>{{page.restaurant-name}}</h2> -->
 
-	<div id="o4l-post-image-container" class="clearfix">
+	<!--<div id="o4l-post-image-container" class="clearfix">
 		{{ content }}
 	</div>
 	<div id="o4l-post-score-container" class="clearfix o4l-no-active">
@@ -54,55 +54,111 @@
 		<h3>Restaurant Address: <br /><br />{{page.restaurant-address}}</h3>
 
 		<h3>Restaurant Type: <br /><br />{{page.restaurant-type}} </h3>
-	</div>
+	</div> -->
 </div>
 
-<div id="o4l-post-container">
-	<span class="deal-on-the-meal">Here's the Deal on the Meal: {{page.restaurant-meal}}</span>
-
+<div id="o4l-post-container" class="o4l-container">
 	<div id="o4l-post-intro" class="o4l-post-section">
-		<h4>Introduction</h4>
+		<h4>The Find:</h4>
+
+		<p>Restaurant Name: {{page.restaurant-name}}</p>
+		<p>Restaurant Address: {{page.restaurant-address}}</p>
+		<p>Restaurant Type: {{page.restaurant-type}}</p>
+		<p>Here's the Deal on the Meal: {{page.restaurant-meal}}</p>
 
 		<p>{{page.intro}}</p>
 	</div>
 
 	<div id="o4l-post-atmosphere" class="o4l-post-section">
-		<h4>Atmosphere</h4>
+		<h4>Atmosphere:</h4>
+
+		<div class="o4l-score o4l-score-{{page.atmosphere-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.atmosphere}}</p>
 	</div>
 
 	<div id="o4l-post-taste" class="o4l-post-section">
-		<h4>Taste</h4>
+		<h4>Taste:</h4>
+
+		<div class="o4l-score o4l-score-{{page.taste-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.taste}}</p>
 	</div>
 
 	<div id="o4l-post-price" class="o4l-post-section">
-		<h4>Price</h4>
+		<h4>Price:</h4>
+
+		<div class="o4l-score o4l-score-{{page.price-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.price}}</p>
 	</div>
 
 	<div id="o4l-post-serving" class="o4l-post-section">
-		<h4>Serving Amount</h4>
+		<h4>Serving Amount:</h4>
+
+		<div class="o4l-score o4l-score-{{page.serving-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.serving}}</p>
 	</div>
 
 	<div id="o4l-post-service" class="o4l-post-section">
-		<h4>Service</h4>
+		<h4>Service:</h4>
+
+		<div class="o4l-score o4l-score-{{page.service-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.service}}</p>
 	</div>
 
 	<div id="o4l-post-overall" class="o4l-post-section">
-		<h4>Overall</h4>
+		<h4>Overall:</h4>
+
+		<div class="o4l-score o4l-score-{{page.overall-score}}">
+			<div class="o4l-score-circle o4l-score-circle-1"></div>
+			<div class="o4l-score-circle o4l-score-circle-2"></div>
+			<div class="o4l-score-circle o4l-score-circle-3"></div>
+			<div class="o4l-score-circle o4l-score-circle-4"></div>
+		</div>
 
 		<p>{{page.overall}}</p>
 	</div>
+</div>
 
-	<span class="o4l-author">-{{page.author}}</span>
+<div id="o4l-map">
+	<div id="o4l-map-container" class="o4l-container">
+		<div id="o4l-x-marks-the-spot"></div>
+	</div>
+</div>
+
+<div id="o4l-author" class="o4l-container">
+	<div id="o4l-author-photo"></div>
+	<h4 id="o4l-author-name">
+		{{page.author}}
+	</h4>
 </div>
 
 {% include footer.html %}
